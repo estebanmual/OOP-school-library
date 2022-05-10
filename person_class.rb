@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 class Person
     attr_accessor :name, :age
     attr_reader :id
@@ -21,25 +20,5 @@ class Person
 
     def can_use_services?
         true if is_of_age? || @parent_permission
-    end
-end
-
-class Student < Person
-    def initialize(classroom)
-        @classroom = classroom
-    end
-
-    def play_hooky
-        return "¯\(ツ)/¯"
-    end
-end
-
-class Teacher < Person
-    def initialize(specialization)
-        @specialization = specialization
-    end
-
-    def can_use_services?
-        true
     end
 end
