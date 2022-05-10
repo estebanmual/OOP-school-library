@@ -33,3 +33,13 @@ class Student < Person
         return "¯\(ツ)/¯"
     end
 end
+
+class Teacher < Person
+    def initialize(specialization)
+        @specialization = specialization
+    end
+
+    def can_use_services?
+        true
+    end
+end
