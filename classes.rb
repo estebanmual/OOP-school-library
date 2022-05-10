@@ -23,3 +23,13 @@ class Person
         true if is_of_age? || @parent_permission
     end
 end
+
+class Student < Person
+    def initialize(classroom)
+        @classroom = classroom
+    end
+
+    def play_hooky
+        return "¯\(ツ)/¯"
+    end
+end
