@@ -1,4 +1,4 @@
-require './main'
+require './decorators'
 
 class Person < Nameable
   attr_accessor :name, :age
@@ -10,6 +10,7 @@ class Person < Nameable
     @name = name
     @parent_permission = parent_permission
     @id = rand(100_000)
+    @rental = []
   end
 
   private
