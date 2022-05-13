@@ -56,7 +56,7 @@ class App
       puts "\nThere are not available books"
       menu
     else
-      @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
+      @books.each { book puts "Title: #{book.title}, Author: #{book.author}" }
     end
   end
 
@@ -66,7 +66,7 @@ class App
       menu
     else
       @people.each do |person|
-        type = if person.is_a?(Teacher)
+        type = if person.is_a(Teacher)
                  'Teacher'
                else
                  'Student'
@@ -85,7 +85,7 @@ class App
     name = gets.chomp
     print 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp.downcase
-    @people << Student.new(age, name, parent_permission)
+    @people << Student.new(age, name)
     puts 'Person created successfully'
     menu
   end
@@ -98,7 +98,7 @@ class App
     name = gets.chomp
     print 'Specialization: '
     specialization = gets.chomp
-    @people << Teacher.new(age, name, specialization)
+    @people << Teacher.new(age, name)
     puts 'Person created successfully'
     menu
   end
