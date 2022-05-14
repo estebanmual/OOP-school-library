@@ -1,4 +1,14 @@
-['./classroom_class.rb', './decorators.rb', './person_class.rb', './student_class.rb',
- './teacher_class.rb'].each do |file|
-  require file
+#!/usr/bin/env ruby
+require './app'
+
+def main
+  puts '----------------------'
+  puts '| School library app |'
+  puts '----------------------'
+
+  puts "\nWelcome to the school library app!"
+  app = App.new
+  app.menu
 end
+
+main

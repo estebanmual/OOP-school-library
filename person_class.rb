@@ -1,4 +1,5 @@
 require './decorators'
+require './rental_class'
 
 class Person < Nameable
   attr_accessor :name, :age, :rental
@@ -29,7 +30,7 @@ class Person < Nameable
     @name
   end
 
-  def add_rental(rental)
-    @rental << rental
+  def add_rental(date, book)
+    @rental << Rental.new(date, book, self)
   end
 end
