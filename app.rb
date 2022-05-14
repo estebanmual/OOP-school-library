@@ -58,23 +58,17 @@ class App
     else
       @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
     end
+    menu
   end
 
   def list_people
     if @people.empty?
-      puts "\nThere are not people to show"
+      puts "\nThere are not available people"
       menu
     else
-      @people.each do |person|
-        type = if person.is_a?(Teacher)
-                 'Teacher'
-               else
-                 'Student'
-               end
-        puts "[#{type}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-        menu
-      end
+      @people.each { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     end
+    menu
   end
 
   def create_student
@@ -85,7 +79,7 @@ class App
     name = gets.chomp
     print 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp.downcase
-    @people << Student.new(age, name, parent_permission)
+    @people << Student.new(age, @classroom, parent_permission, name)
     puts 'Person created successfully'
     menu
   end
@@ -165,5 +159,6 @@ class App
         end
       end
     end
+    menu
   end
 end
