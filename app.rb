@@ -13,25 +13,22 @@ class App
     @people = []
   end
 
-  
   def list_books
     if @books.empty?
       puts "\nThere are not available books"
-      menu
+
     else
       @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
     end
-    menu
   end
 
   def list_people
     if @people.empty?
       puts "\nThere are not available people"
-      menu
+
     else
       @people.each { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     end
-    menu
   end
 
   def create_student
@@ -44,7 +41,6 @@ class App
     parent_permission = gets.chomp.downcase
     @people << Student.new(age, @classroom, parent_permission, name)
     puts 'Person created successfully'
-    menu
   end
 
   def create_teacher
@@ -57,7 +53,6 @@ class App
     specialization = gets.chomp
     @people << Teacher.new(specialization, age, name)
     puts 'Person created successfully'
-    menu
   end
 
   def create_person
@@ -83,7 +78,6 @@ class App
     author = gets.chomp
     @books << Book.new(title, author)
     puts 'Book created successfully'
-    menu
   end
 
   def create_rental
@@ -102,13 +96,12 @@ class App
     date = gets.chomp
     @rentals << @people[person_index].add_rental(date, @books[book_index])
     puts 'Rental created successfully'
-    menu
   end
 
   def list_rental
     if @rentals.empty?
       puts 'No rentals to show'
-      menu
+
     else
       @people.each do |person|
         puts "Name: #{person.name}, ID: #{person.id}"
@@ -122,6 +115,5 @@ class App
         end
       end
     end
-    menu
   end
 end
