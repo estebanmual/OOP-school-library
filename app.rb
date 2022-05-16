@@ -13,44 +13,7 @@ class App
     @people = []
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity
-  def options(option)
-    case option
-    when 1
-      list_books
-    when 2
-      list_people
-    when 3
-      create_person
-    when 4
-      create_book
-    when 5
-      create_rental
-    when 6
-      list_rental
-    when 7
-      puts 'Thanks for using the app :)'
-    else
-      puts 'Invalid option.'
-      menu
-    end
-  end
-
-  # rubocop:enable Metrics/CyclomaticComplexity
-  def menu
-    puts "\n\nPlease choose an option by enterin a number:"
-    puts '1.- List all books'
-    puts '2.- List all people'
-    puts '3.- Create a person'
-    puts '4.- Create a book'
-    puts '5.- Create a rental'
-    puts '6.- List all rentals for a given person id'
-    puts '7.- Exit'
-    print '> '
-    option = gets.chomp.to_i
-    options(option)
-  end
-
+  
   def list_books
     if @books.empty?
       puts "\nThere are not available books"
