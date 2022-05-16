@@ -31,7 +31,7 @@ class App
     end
   end
 
-  def create_student
+  def student_details
     puts 'Provide the student information'
     print 'Age: '
     age = gets.chomp.to_i
@@ -39,11 +39,17 @@ class App
     name = gets.chomp
     print 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp.downcase
+    [age, name, parent_permission]
+  end
+
+  def create_student
+    age, name, parent_permission = student_details
+
     @people << Student.new(age, @classroom, parent_permission, name)
     puts 'Person created successfully'
   end
 
-  def create_teacher
+  def teacher_details
     puts 'Provide the teacher information'
     print 'Age: '
     age = gets.chomp.to_i
@@ -51,6 +57,12 @@ class App
     name = gets.chomp
     print 'Specialization: '
     specialization = gets.chomp
+    [age, name, specialization]
+  end
+
+  def create_teacher
+    age, name, specialization = teacher_details
+
     @people << Teacher.new(specialization, age, name)
     puts 'Person created successfully'
   end
@@ -70,12 +82,17 @@ class App
     end
   end
 
-  def create_book
+  def book_details
     puts 'Provide book information.'
     print 'Title: '
     title = gets.chomp
     print 'Author: '
     author = gets.chomp
+    [title, author]
+  end
+
+  def create_book
+    title, author = book_details
     @books << Book.new(title, author)
     puts 'Book created successfully'
   end
