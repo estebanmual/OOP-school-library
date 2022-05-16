@@ -102,7 +102,8 @@ class App
     @books.each_with_index do |book, index|
       puts "#{index}) Title: #{book.title}, Author: #{book.author}"
     end
-    book_index = gets.chomp.to_i
+    print '> '
+    gets.chomp.to_i
   end
 
   def select_person
@@ -111,7 +112,8 @@ class App
       type = person.is_a?(Teacher) ? '[Teacher]' : '[Student]'
       puts "#{index}) #{type} Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
-    person_index = gets.chomp.to_i
+    print '> '
+    gets.chomp.to_i
   end
 
   def create_rental
