@@ -32,6 +32,12 @@ To get a local copy up and running follow these simple example steps.
 - Instagram: [@estebanmual](https://instagram.com/estebanmual)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/estebanmual)
 
+👤 **Thiago Allan Porro Ponce**
+
+- GitHub: [@Thi-Ponce](https://github.com/Thi-Ponce)
+- Twitter: [@Thi_ponce](https://twitter.com/Thi_ponce)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/thiago-ponce)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
