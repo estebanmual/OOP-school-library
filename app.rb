@@ -1,5 +1,5 @@
 ['./book_class', './classroom_class', './person_class', './rental_class', './student_class',
- './teacher_class'].each do |file|
+ './teacher_class', 'json'].each do |file|
   require file
 end
 
@@ -143,5 +143,27 @@ class App
         end
       end
     end
+  end
+
+  def save_books
+    data = []
+    @books.each do |book|
+      data.push(title: book.title, author: book.author, rental: book.rental)
+    end
+    File.write('books.json', JSON.pretty_generate(data))
+  end
+
+  def save_people
+    File.write('people.json', JSON.generate(@people))
+  end
+
+  def save_rentals
+    File.write('rentals.json', JSON.generate(@rentals))
+  end
+
+  def save_files
+    save_books
+    save_people
+    save_rentals
   end
 end

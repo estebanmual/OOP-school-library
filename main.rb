@@ -17,6 +17,7 @@ def options(option)
   when 6
     @app.list_rental
   when 7
+    @app.save_files
     puts 'Thanks for using the app :)'
   else
     puts 'Invalid option.'
