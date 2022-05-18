@@ -137,9 +137,9 @@ class App
       print 'Person ID: '
       person_id = gets.chomp.to_i
       puts 'Rentals'
-      @rentals.each_with_index do |rental, index|
-        if rental[index].person.id == person_id
-          puts "Date: #{rental[index].date}, Book: #{rental[index].book.title} by #{rental[index].book.author}"
+      @rentals.each do |rental|
+        if rental.person.id == person_id
+          puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
         end
       end
     end
@@ -176,6 +176,14 @@ class App
       else 
       @people << Student.new(person['age'], Classroom.new(person['classroom']), person['parent_permission'], person['name'])
       end
+    end
+  end
+
+  def load_rentals(filename = 'rentals.json')
+    JSON.parse(File.read(filename)).each do |rental|
+      person = @people.find{|individual| individual.name = rental['person']['name']}
+      book = @books.find{|tome| tome.title = rental['book']['title']}
+      @rentals << Rental.new(rental['date'], book, person)
     end
   end
 
