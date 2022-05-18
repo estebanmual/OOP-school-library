@@ -153,10 +153,14 @@ class App
     File.write(filename, @people.to_json)
   end
 
+  def save_rentals(filename = 'rentals.json')
+    File.write(filename, @rentals.to_json)
+  end
+
   def save_files
     save_books
     save_people
-    # save_rentals
+    save_rentals
   end
 
   def load_books(filename = 'books.json')
