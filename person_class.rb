@@ -33,8 +33,4 @@ class Person < Nameable
   def add_rental(date, book)
     @rental << Rental.new(date, book, self)
   end
-
-  def to_json(*_args)
-    { age: @age, name: @name, parent_permission: @parent_permission, rentals: @rental }.to_json
-  end
 end
