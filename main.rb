@@ -52,6 +52,7 @@ def main
   puts "\nWelcome to the school library app!"
 
   @app = App.new
+  @app.load_books
   menu
 end
 

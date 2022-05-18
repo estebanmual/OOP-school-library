@@ -161,7 +161,7 @@ class App
 
   def load_books(filename = 'books.json')
     JSON.parse(File.read(filename)).each do |book|
-      create_book(book['title'], book['author'])
+      @books << Book.new(book['title'], book['author'])
     end
   end
 
