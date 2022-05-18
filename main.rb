@@ -53,6 +53,7 @@ def main
 
   @app = App.new
   @app.load_books
+  @app.load_people
   menu
 end
 

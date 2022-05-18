@@ -21,6 +21,6 @@ class Student < Person
   end
 
   def to_json(*_args)
-    { age: @age, name: @name, parent_permission: @parent_permission, classroom: @classroom.label }.to_json
+    { type: 'student', age: @age, name: @name, parent_permission: @parent_permission, classroom: @classroom.label }.to_json
   end
 end

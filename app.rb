@@ -165,4 +165,14 @@ class App
     end
   end
 
+  def load_people(filename = 'people.json')
+    JSON.parse(File.read(filename)).each do |person|
+      if person['type'] == 'teacher'
+      @people << Teacher.new(person['specialization'], person['age'], person['name'])
+      else 
+      @people << Student.new(person['age'], Classroom.new(person['classroom']), person['parent_permission'], person['name'])
+      end
+    end
+  end
+
 end

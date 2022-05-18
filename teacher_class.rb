@@ -10,6 +10,6 @@ class Teacher < Person
     true
   end
   def to_json(*_args)
-    { age: @age, name: @name, parent_permission: @parent_permission, specialization: @specialization }.to_json
+    { type: 'teacher', age: @age, name: @name, parent_permission: @parent_permission, specialization: @specialization }.to_json
   end
 end
