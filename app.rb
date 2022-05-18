@@ -31,17 +31,6 @@ class App
     end
   end
 
-  def student_details
-    puts 'Provide the student information'
-    print 'Age: '
-    age = gets.chomp.to_i
-    print 'Name: '
-    name = gets.chomp
-    print 'Has parent permission? [Y/N]: '
-    parent_permission = gets.chomp.downcase
-    [age, name, parent_permission]
-  end
-
   def create_student
     age, name, parent_permission = student_details
 
@@ -171,20 +160,31 @@ class App
 
   def load_people(filename = 'people.json')
     JSON.parse(File.read(filename)).each do |person|
-      if person['type'] == 'teacher'
-      @people << Teacher.new(person['specialization'], person['age'], person['name'])
-      else 
-      @people << Student.new(person['age'], Classroom.new(person['classroom']), person['parent_permission'], person['name'])
-      end
+      @people << if person['type'] == 'teacher'
+                   Teacher.new(person['specialization'], person['age'], person['name'])
+                 else
+                   Student.new(person['age'], Classroom.new(person['classroom']), person['parent_permission'],
+                               person['name'])
+                 end
     end
   end
 
   def load_rentals(filename = 'rentals.json')
     JSON.parse(File.read(filename)).each do |rental|
-      person = @people.find{|individual| individual.name = rental['person']['name']}
-      book = @books.find{|tome| tome.title = rental['book']['title']}
+      person = @people.find { |individual| individual.name = rental['person']['name'] }
+      book = @books.find { |tome| tome.title = rental['book']['title'] }
       @rentals << Rental.new(rental['date'], book, person)
     end
   end
+end
 
+def student_details
+  puts 'Provide the student information'
+  print 'Age: '
+  age = gets.chomp.to_i
+  print 'Name: '
+  name = gets.chomp
+  print 'Has parent permission? [Y/N]: '
+  parent_permission = gets.chomp.downcase
+  [age, name, parent_permission]
 end

@@ -1,1 +1,1 @@
-[{"type":"student","age":20,"name":"me","parent_permission":"y","classroom":"1-A"},{"type":"teacher","age":30,"name":"you","parent_permission":true,"specialization":"art"},{"type":"student","age":23,"name":"someone","parent_permission":"n","classroom":"1-A"},{"type":"teacher","age":45,"name":"someone else","parent_permission":true,"specialization":"math"}]
+[]
