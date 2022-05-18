@@ -153,13 +153,15 @@ class App
   end
 
   def load_books(filename = 'books.json')
-    JSON.parse(File.read(filename)).each do |book|
+    books = File.exist?(filename) ? JSON.parse(File.read(filename)) : []
+    books.each do |book|
       @books << Book.new(book['title'], book['author'])
     end
   end
 
   def load_people(filename = 'people.json')
-    JSON.parse(File.read(filename)).each do |person|
+    people = File.exist?(filename) ? JSON.parse(File.read(filename)) : []
+    people.each do |person|
       @people << if person['type'] == 'teacher'
                    Teacher.new(person['specialization'], person['age'], person['name'])
                  else
@@ -170,7 +172,8 @@ class App
   end
 
   def load_rentals(filename = 'rentals.json')
-    JSON.parse(File.read(filename)).each do |rental|
+    rentals = File.exist?(filename) ? JSON.parse(File.read(filename)) : []
+    rentals.each do |rental|
       person = @people.find { |individual| individual.name = rental['person']['name'] }
       book = @books.find { |tome| tome.title = rental['book']['title'] }
       @rentals << Rental.new(rental['date'], book, person)
