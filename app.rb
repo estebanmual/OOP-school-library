@@ -145,25 +145,24 @@ class App
     end
   end
 
-  def save_books
-    data = []
-    @books.each do |book|
-      data.push(title: book.title, author: book.author, rental: book.rental)
-    end
-    File.write('books.json', JSON.pretty_generate(data))
+  def save_books(filename = 'books.json')
+    File.write(filename, @books.to_json)
   end
 
-  def save_people
-    File.write('people.json', JSON.generate(@people))
-  end
-
-  def save_rentals
-    File.write('rentals.json', JSON.generate(@rentals))
+  def save_people(filename = 'people.json')
+    File.write(filename, @people.to_json)
   end
 
   def save_files
     save_books
     save_people
-    save_rentals
+    # save_rentals
   end
+
+  def load_books(filename = 'books.json')
+    JSON.parse(File.read(filename)).each do |book|
+      create_book(book['title'], book['author'])
+    end
+  end
+
 end
