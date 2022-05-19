@@ -5,6 +5,8 @@ class Nameable
 end
 
 class Decorator < Nameable
+attr_reader :nameable
+  
   def initialize(nameable)
     super()
     @nameable = nameable
