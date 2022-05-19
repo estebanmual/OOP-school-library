@@ -1,6 +1,7 @@
 require './person_class'
 
 class Student < Person
+  attr_accessor :parent_permission
   attr_reader :classroom
 
   def initialize(age, classroom, parent_permission, name = 'Unknown')
