@@ -1,5 +1,5 @@
 ['./book_class', './classroom_class', './person_class', './rental_class', './student_class',
- './teacher_class'].each do |file|
+ './teacher_class', 'json'].each do |file|
   require file
 end
 
@@ -29,17 +29,6 @@ class App
     else
       @people.each { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     end
-  end
-
-  def student_details
-    puts 'Provide the student information'
-    print 'Age: '
-    age = gets.chomp.to_i
-    print 'Name: '
-    name = gets.chomp
-    print 'Has parent permission? [Y/N]: '
-    parent_permission = gets.chomp.downcase
-    [age, name, parent_permission]
   end
 
   def create_student
@@ -137,11 +126,68 @@ class App
       print 'Person ID: '
       person_id = gets.chomp.to_i
       puts 'Rentals'
-      @rentals.each_with_index do |rental, index|
-        if rental[index].person.id == person_id
-          puts "Date: #{rental[index].date}, Book: #{rental[index].book.title} by #{rental[index].book.author}"
+      @rentals.each do |rental|
+        if rental.person.id == person_id
+          puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
         end
       end
     end
   end
+
+  def save_books(filename = 'books.json')
+    File.write(filename, @books.to_json)
+  end
+
+  def save_people(filename = 'people.json')
+    File.write(filename, @people.to_json)
+  end
+
+  def save_rentals(filename = 'rentals.json')
+    File.write(filename, @rentals.to_json)
+  end
+
+  def save_files
+    save_books
+    save_people
+    save_rentals
+  end
+
+  def load_books(filename = 'books.json')
+    books = File.exist?(filename) ? JSON.parse(File.read(filename)) : []
+    books.each do |book|
+      @books << Book.new(book['title'], book['author'])
+    end
+  end
+
+  def load_people(filename = 'people.json')
+    people = File.exist?(filename) ? JSON.parse(File.read(filename)) : []
+    people.each do |person|
+      @people << if person['type'] == 'teacher'
+                   Teacher.new(person['specialization'], person['age'], person['name'])
+                 else
+                   Student.new(person['age'], Classroom.new(person['classroom']), person['parent_permission'],
+                               person['name'])
+                 end
+    end
+  end
+
+  def load_rentals(filename = 'rentals.json')
+    rentals = File.exist?(filename) ? JSON.parse(File.read(filename)) : []
+    rentals.each do |rental|
+      person = @people.find { |individual| individual.name = rental['person']['name'] }
+      book = @books.find { |tome| tome.title = rental['book']['title'] }
+      @rentals << Rental.new(rental['date'], book, person)
+    end
+  end
+end
+
+def student_details
+  puts 'Provide the student information'
+  print 'Age: '
+  age = gets.chomp.to_i
+  print 'Name: '
+  name = gets.chomp
+  print 'Has parent permission? [Y/N]: '
+  parent_permission = gets.chomp.downcase
+  [age, name, parent_permission]
 end

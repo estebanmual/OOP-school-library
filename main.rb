@@ -17,6 +17,7 @@ def options(option)
   when 6
     @app.list_rental
   when 7
+    @app.save_files
     puts 'Thanks for using the app :)'
   else
     puts 'Invalid option.'
@@ -51,6 +52,9 @@ def main
   puts "\nWelcome to the school library app!"
 
   @app = App.new
+  @app.load_books
+  @app.load_people
+  @app.load_rentals
   menu
 end
 
